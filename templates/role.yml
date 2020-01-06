@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Child Lambda SNS Subscribe
+Parameters:
+  SharedAccountId:
+    Description: Shared SNS Account
+    Type: String
+Resources:
+  IAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: aws-cfn-stack-sets-child
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            AWS:
+              - !Sub "arn:aws:iam::${SharedAccountId}:root"
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+Outputs:
+  IAMRoleArn:
+    Description: IAMRoleArnaaa
+    Value: !GetAtt IAMRole.Arn
