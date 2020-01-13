@@ -10,8 +10,8 @@ import multiprocessing
 from multiprocessing import Process
 import logging
 
-import newport_helpers.stack_set_constants as stack_set_constants
-from newport_helpers import helpers, cfn_helpers, org_helpers
+import stack_set_helpers.stack_set_constants as stack_set_constants
+from stack_set_helpers import helpers, cfn_helpers, org_helpers
 
 shared_session = boto3.session.Session()
 Helpers = helpers.Helpers()

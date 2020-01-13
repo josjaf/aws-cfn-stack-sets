@@ -1,6 +1,6 @@
 import boto3
 
-from newport_helpers import helpers, cfn_helpers, iam_helpers
+from stack_set_helpers import helpers, cfn_helpers, iam_helpers
 
 Helpers = helpers.Helpers()
 Cfn_helpers = cfn_helpers.CfnHelpers()

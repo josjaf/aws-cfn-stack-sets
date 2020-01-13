@@ -1,5 +1,5 @@
 import boto3
-from newport_helpers import helpers, cfn_helpers, iam_helpers, org_helpers
+from stack_set_helpers import helpers, cfn_helpers, iam_helpers, org_helpers
 import multiprocessing
 from multiprocessing import Process
 import logging
