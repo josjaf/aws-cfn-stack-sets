@@ -107,7 +107,7 @@ class CfnHelpers():
         status = None
         counter = 0
         start = datetime.datetime.now()
-        while status is not "CREATE_COMPLETE" or status is not "UPDATE_COMPLETE":
+        while status != "CREATE_COMPLETE" or status !=  "UPDATE_COMPLETE":
             response = cloudformation_client.describe_stacks(
                 StackName=stack_name,
             )
@@ -409,6 +409,7 @@ class CfnHelpers():
             if len(inprogress_operations) == 0: # Are you SURE there are no stack set operations running
                 return "No StackSets to wait on"
             else:
+                # This is the edge case where the operation is not immediately registered in the API
                 print(f"STACK SET API RETURNED 0, WAITED {(5*poll_count)}s, NOW THERE IS AN OPERATION!!")
         for operation in inprogress_operations:
             running = True
