@@ -23,5 +23,5 @@ Resources:
       Path: "/"
 Outputs:
   IAMRoleArn:
-    Description: IAMRoleArnaaa
+    Description: IAMRoleArn
     Value: !GetAtt IAMRole.Arn
