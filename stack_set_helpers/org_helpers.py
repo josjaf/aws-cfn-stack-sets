@@ -1,5 +1,5 @@
 import boto3
-from newport_helpers import helpers
+from stack_set_helpers import helpers
 import threading
 from botocore.exceptions import ClientError
 
