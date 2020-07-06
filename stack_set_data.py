@@ -29,7 +29,7 @@ class StackSet_Dev():
         self.session = boto3.session.Session()
         self.stack_set_args = StackSetConstants.create_stack_set_args.copy()
         self.stack_set_args['StackSetName'] = 'iin-shared-dev'
-        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('deploy_child_role_stack_set.yml')
+        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('templates/deploy_child_role_stack_set.yml')
         self.stack_set_args['Description'] = 'iin-bootstrap'
         self.stack_set_args['Parameters'] = Cfn_helpers.dict_to_cfn_parameters(
             {'namespace': 'iin', 'SharedAccountId': org_account_id, 'RoleName': 'iin-shared-dev'})
@@ -62,7 +62,7 @@ class StackSet_Prod():
         self.session = boto3.session.Session()
         self.stack_set_args = StackSetConstants.create_stack_set_args.copy()
         self.stack_set_args['StackSetName'] = 'iin-shared-prod'
-        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('deploy_child_role_stack_set.yml')
+        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('templates/deploy_child_role_stack_set.yml')
         self.stack_set_args['Description'] = 'iin-bootstrap'
         self.stack_set_args['Parameters'] = Cfn_helpers.dict_to_cfn_parameters(
             {'namespace': 'iin', 'SharedAccountId': org_account_id, 'RoleName': 'iin-shared-prod'})
@@ -92,7 +92,7 @@ class StackSet_Org():
         self.session = boto3.session.Session()
         self.stack_set_args = StackSetConstants.create_stack_set_args.copy()
         self.stack_set_args['StackSetName'] = 'iin-org-child'
-        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('deploy_child_role_stack_set.yml')
+        self.stack_set_args['TemplateBody'] = Helpers.file_to_string('templates/deploy_child_role_stack_set.yml')
         self.stack_set_args['Description'] = 'Stack Set deployed from Pipeline'
         self.stack_set_args['Parameters'] = Cfn_helpers.dict_to_cfn_parameters(
             {'namespace': 'iin', 'SharedAccountId': org_account_id, 'RoleName': 'iin-org-child'})
