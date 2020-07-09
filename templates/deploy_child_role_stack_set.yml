@@ -1,0 +1,49 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: IIN Child Role
+Parameters:
+  namespace:
+    Type: String
+  SharedAccountId:
+    Type: String
+  RoleName:
+    Type: String
+Resources:
+  SharedRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref RoleName
+      AssumeRolePolicyDocument:
+
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:  "sts:AssumeRole"
+            Principal:
+              AWS:
+                - !Sub "arn:aws:iam::${SharedAccountId}:root"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+#  ReadOnlyRole:
+#    Type: AWS::IAM::Role
+#    Properties:
+#      RoleName: !Sub ${namespace}-ReadOnly
+#      #RoleName: Aardvark
+#      AssumeRolePolicyDocument:
+#
+#        Version: 2012-10-17
+#        Statement:
+#          - Effect: Allow
+#            Action:  "sts:AssumeRole"
+#            Principal:
+#              AWS:
+#                - !Sub "arn:aws:iam::${SharedAccountId}:root"
+#      ManagedPolicyArns:
+#        - arn:aws:iam::aws:policy/ReadOnlyAccess
+#
+
+
+Outputs:
+  SharedRole:
+    Description: Master Role Arn
+    Value: !GetAtt SharedRole.Arn

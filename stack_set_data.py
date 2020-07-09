@@ -55,7 +55,7 @@ class StackSet_Dev():
             'OrganizationalUnitIds': [self.ou_id]}
         self.stack_set_instances['OperationId'] = str(uuid.uuid1())
         return
-ss_dev = StackSet_Dev()
+
 
 class StackSet_Prod():
     def __init__(self, *args, **kwargs):
@@ -82,7 +82,7 @@ class StackSet_Prod():
         self.stack_set_instances['DeploymentTargets'] = {
             'OrganizationalUnitIds': [self.ou_id]}
         self.stack_set_instances['OperationId'] = str(uuid.uuid1())
-ss_prod = StackSet_Prod()
+
 
 
 class StackSet_Org():
@@ -115,4 +115,3 @@ class StackSet_Org():
 
         return
 
-ss_org = StackSet_Org()

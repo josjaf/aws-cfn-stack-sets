@@ -42,9 +42,9 @@ def stack_set_deploy(stack_set, shared_session):
     return
 def main():
 
-    SharedServicesDevStackSet = stack_set_data.ss_dev
-    SharedServicesProdStackSet = stack_set_data.ss_prod
-    OrgChildStackSet = stack_set_data.ss_org
+    SharedServicesDevStackSet = stack_set_data.StackSet_Dev()
+    #SharedServicesProdStackSet = stack_set_data.StackSet_Prod()
+    OrgChildStackSet = stack_set_data.StackSet_Org()
 
 
     multiprocessing.log_to_stderr()
