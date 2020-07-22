@@ -4,11 +4,13 @@ Parameters:
   SharedAccountId:
     Description: Shared SNS Account
     Type: String
+  RoleName:
+    Type: String
 Resources:
   IAMRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: aws-cfn-stack-sets-child
+      RoleName: !Ref RoleName
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AdministratorAccess
       AssumeRolePolicyDocument:
