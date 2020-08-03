@@ -46,9 +46,12 @@ class IamOrgAdmin():
         # stack_set_instance_args['DeploymentTargets'] = {'OrganizationalUnitIds': [Org_helpers.get_principal_org_id(org_session)]}
 
         self.roots = [i['Id'] for i in organizations.list_roots()['Roots']]
-        # ous = response = organizations.list_organizational_units_for_parent(
-        #     ParentId=roots[0],
-        # )
+
+        # if you want to use specific OU
+        # ou_ids = [Org_helpers.get_ou_id_from_name(org_session, i) for i in ['dev', 'uat']]
+        # self.stack_set_instances['DeploymentTargets'] = {
+        #     'OrganizationalUnitIds': ou_ids}
+
         self.stack_set_instances['DeploymentTargets'] = {
             'OrganizationalUnitIds': self.roots}
         self.stack_set_instances['OperationId'] = str(uuid.uuid1())

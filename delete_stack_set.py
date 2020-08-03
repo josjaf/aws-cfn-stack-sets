@@ -1,6 +1,6 @@
 import boto3
 import os
-from newport_helpers import helpers, cfn_helpers, org_helpers
+from stack_set_helpers import helpers, cfn_helpers, org_helpers
 from botocore.exceptions import ClientError
 import botocore
 import uuid
@@ -36,8 +36,8 @@ def delete_stack_set(session, stack_set, accounts):
     try:
         print(f"Deleting Stack Set Instances for {stack_set_name}")
         organizations = session.client('organizations')
-        roots = [i['Id'] for i in organizations.list_roots()['Roots']]
-        ou_id = Org_helpers.get_ou_id_from_name(session, 'dev')
+        # roots = [i['Id'] for i in organizations.list_roots()['Roots']]
+        # ou_id = Org_helpers.get_ou_id_from_name(session, 'dev')
         response = cfn.delete_stack_instances(**instances_dict)
         print(response)
         inprogress = True
