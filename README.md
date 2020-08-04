@@ -5,9 +5,11 @@
 * There are two kinds of ways of deploying Stack Sets - Service and Account level. This code provides examples of each
 * The advantage of deploying to Organization Units (OUs) is that the Stack Sets can be automatically added and removed when accounts move through OUs
 * In Order to target Ous, you must trust the Stack Set Service in the Organization Master Account. 
+    * `aws organizations enable-all-features`
+    * `aws organizations enable-aws-service-access member.org.stacksets.cloudformation.amazonaws.com`
 
-## Examples Provide
-* See `stack_set_helpers/stack_set_data`
+## Examples Provided
+* See `stack_set_helpers/stack_set_data.py`
 
 * Edit line 36 on Stack Set Data `trusted_account_id = Org_helpers.get_id_account_by_name(self.session, 'joshlab')` this will deploy a role to the whole Organization that trusts an account named `joshlab`
 * If you do not edit this line, the code will fail
