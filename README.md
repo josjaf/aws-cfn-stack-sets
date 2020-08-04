@@ -7,7 +7,7 @@
 * In Order to target Ous, you must trust the Stack Set Service in the Organization Master Account. 
     * `aws organizations enable-all-features`
     * `aws organizations enable-aws-service-access --service-principal member.org.stacksets.cloudformation.amazonaws.com`
-
+    * List of Serice Principals: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html
 ## Examples Provided
 * See `stack_set_helpers/stack_set_data.py`
 
