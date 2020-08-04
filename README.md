@@ -1,4 +1,5 @@
 # AWS CFN Stack Sets
+
 * This library is meant to help you define Stack Sets and deploy them across your Organization
 * This code is meant to be run in the Organization Master Account
 * The Organization Master Account is the only account that has access to the Child Accounts and the Organization API
@@ -8,6 +9,7 @@
     * `aws organizations enable-all-features`
     * `aws organizations enable-aws-service-access --service-principal member.org.stacksets.cloudformation.amazonaws.com`
     * List of Serice Principals: https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html
+    * see `prep_org.py` for enabling in python
 ## Examples Provided
 * See `stack_set_helpers/stack_set_data.py`
 
