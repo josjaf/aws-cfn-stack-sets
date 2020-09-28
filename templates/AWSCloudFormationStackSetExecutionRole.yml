@@ -12,7 +12,7 @@ Resources:
   ExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: AWSCloudFormationStackSetExecutionRoleQS
+      RoleName: AWSCloudFormationStackSetExecutionRole
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:

@@ -9,12 +9,38 @@ Cfn_helpers = cfn_helpers.CfnHelpers()
 Iam_helpers = iam_helpers.IamHelpers()
 Org_helpers = org_helpers.Organization_Helpers()
 
+def delete(child_session, stack_name, AdministratorAccountId, failed_accounts, account):
+    """
+    Clean out existing roles if needed
+    :param child_session:
+    :param stack_name:
+    :param AdministratorAccountId:
+    :param failed_accounts:
+    :param account:
+    :return:
+    """
+    try:
+
+        # TODO Check whether this role exists in a cfn stack
+        # TODO if the role exists, check if the trust relationship is correct
+        cfn = child_session.client('cloudformation')
+        response = cfn.delete_stack(StackName=stack_name)
+        response = cfn.delete_stack(StackName='cfn-stack-set-role')
+        if Iam_helpers.check_iam_role_exists(child_session,
+                                         'AWSCloudFormationStackSetExecutionRole'):
+            print(f"Found AWSCloudFormationStackSetExecutionRole")
+    except Exception as e:
+        print(e)
+        failed_accounts.append(account)
+
+    return
+
 def deploy(child_session, stack_name, AdministratorAccountId, failed_accounts, account):
     try:
         # TODO Check whether this role exists in a cfn stack
         # TODO if the role exists, check if the trust relationship is correct
         if Iam_helpers.check_iam_role_exists(child_session,
-                                             'AWSCloudFormationStackSetExecutionRoleQS') and not Cfn_helpers.cfn_check_stack_exists(
+                                             'AWSCloudFormationStackSetExecutionRole') and not Cfn_helpers.cfn_check_stack_exists(
             child_session, stack_name):
             msg = 'AWSCloudFormationStackSetExecutionRoleQS role exists in child account, but is managed outside aws-cfn-stack-sets, free to continue, assuming Admin Role has access to child accounts'
             print(msg)
@@ -57,7 +83,7 @@ def main():
     procs = []
     global failed_accounts
     failed_accounts = []
-    stack_name = 'aws-cfn-stack-sets-child'
+    stack_name = 'AWSCloudFormationStackSetExecutionRole'
     for account in org_accounts:
         child_session = Helpers.get_child_session(account, 'OrganizationAccountAccessRole', org_session)
         proc = Process(target=deploy, args=(child_session, stack_name, AdministratorAccountId, failed_accounts, account))
@@ -66,7 +92,7 @@ def main():
 
     for proc in procs:
         proc.join()
-        #deploy(child_session, stack_name, AdministratorAccountId, failed_accounts, account)
+        #delete(child_session, stack_name, AdministratorAccountId, failed_accounts, account)
 
 
 
