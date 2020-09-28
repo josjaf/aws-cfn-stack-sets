@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: IIN Child Role
+Description: aws-cfn-stack-sets Child Role
 Parameters:
   namespace:
     Type: String

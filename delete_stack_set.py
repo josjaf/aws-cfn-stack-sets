@@ -93,11 +93,15 @@ def main():
 
     threads = []
     for stack_set in stack_sets:
-        if stack_set['StackSetName'].startswith('AWS'):
+        if not stack_set['StackSetName'].startswith('aws-cfn-stack-sets'):
             print(f"Skipping: {stack_set['StackSetName']}")
             continue
+        # if stack_set['StackSetName'].startswith('AWS'):
+        #     print(f"Skipping: {stack_set['StackSetName']}")
+        #     continue
+
         print(f"Deleting {stack_set['StackSetName']}")
-        # if stack_set['StackSetName'].startswith('iin-org-child-role'):
+        # if stack_set['StackSetName'].startswith('aws-cfn-stack-sets-org-child-role'):
        # delete_stack_set(shared_session, stack_set, org_accounts)
         t = threading.Thread(target=delete_stack_set,
                              args=(shared_session, stack_set, org_accounts))
