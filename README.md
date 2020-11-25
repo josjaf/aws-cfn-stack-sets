@@ -24,3 +24,7 @@
 # Notes
 * Switching from `OrganizationAccountAccessRole` in the children requires deploying `AWSCloudFormationStackSetExecutionRole.yml` in all of the children, see `deploy_child_stackset_role.py` for doing this across the Organization
 * `deploy_child_stackset_role.py` can also be used to deploy a CloudFormation stack to the entire Organization without using Stack Sets. 
+* This predates the following:
+    * https://aws.amazon.com/about-aws/whats-new/2020/09/aws-cloudformation-now-supports-stacksets-resource-type-in-the-cloudformation-registry/
+    * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudformation-stackset.html
+    
